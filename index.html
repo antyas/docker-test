@@ -8,5 +8,27 @@
 </head>
 <body>
     <h1>Hello</h1>
+
+    <div class="container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('.container');
+            const socket = new WebSocket('ws://docker-test.com:3000');
+
+            socket.addEventListener('open', function (event) {
+                let index = 0;
+                socket.send(index++)
+                setInterval(() => socket.send(index++), 5000);
+            });
+
+            socket.addEventListener('message', function (event) {
+                const p = document.createElement('p');
+                const seconds = (event.timeStamp / 1000).toFixed(1);
+                p.textContent = `[ ${seconds}s ] : ${event.data}`;
+                container.append(p);
+            });
+        });
+    </script>
 </body>
 </html>
