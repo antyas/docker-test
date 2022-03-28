@@ -14,7 +14,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.querySelector('.container');
-            const socket = new WebSocket('ws://docker-test.com:3000');
+            const socket = new WebSocket('ws://docker-test.com/socket');
 
             socket.addEventListener('open', function (event) {
                 let index = 0;

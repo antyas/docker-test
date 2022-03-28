@@ -10,13 +10,10 @@ services:
     ports:
       - 80:80
       - 443:443
-      - 3000:3000
 
   deno:
     image: denoland/deno:alpine
     container_name: socket_server
-    build:
-      context: .
     command: deno run -A /usr/share/main.ts
     volumes:
       - ./main.ts:/usr/share/main.ts
